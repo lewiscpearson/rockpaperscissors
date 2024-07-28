@@ -4,3 +4,8 @@ function getComputerChoice() {
     return Math.floor(Math.random() * (maxFloored-minCeiled) + minCeiled);
 }
 
+function getHumanChoice() {
+    let choice = prompt("Rock, Paper, or Scissors?")
+
+}
+
