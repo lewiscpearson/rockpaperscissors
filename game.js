@@ -57,4 +57,25 @@ function playGame() {
     }
 }
 
+function testProbability() {
+    let rockCount = 0;
+    let paperCount = 0;
+    let scissorsCount = 0;
+
+
+    for (let i=0; i<1000;i++) {
+
+        let choice = getComputerChoice();
+
+        if (choice == "rock") {
+            rockCount++;
+        } else if (choice =="paper") {
+            paperCount++;
+        } else if (choice=="scissors") {
+            scissorsCount++;
+     };
+    }
+    return console.log(rockCount + " " + scissorsCount + " " + paperCount)
+}
+
 playGame()
