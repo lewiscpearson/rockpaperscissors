@@ -14,20 +14,16 @@ function getComputerChoice() {
 
 function getHumanChoice() {
     let choice = prompt("Rock, Paper, or Scissors?");
-    console.log("Human choice received" + choice)
+    console.log("Human choice received")
     return choice;
 }
 
 function playGame() {
-    console.log("play game initiated")
+    console.log("Play game initiated")
     let humanScore = 0;
     let computerScore = 0;
-
-
-    console.log("choices decided")
-
+    
     function playRound(humanChoice, computerChoice) {
-        console.log("play round called")
         if ((humanChoice=="rock"&&computerChoice=="scissors")||(humanChoice=="paper"&&computerChoice=="rock")||(humanChoice=="scissors"&&computerChoice=="paper")){
             humanScore++;
             console.log(`Human wins with ${humanChoice} vs ${computerChoice}`);
@@ -43,7 +39,7 @@ function playGame() {
     }
 
     for (let i=0; i<4;i++) {
-        console.log(i)
+        console.log("Round " + i + "/5");
             let computerChoice = getComputerChoice();
             let humanChoice = getHumanChoice();
             playRound(humanChoice, computerChoice);
@@ -57,25 +53,25 @@ function playGame() {
     }
 }
 
-function testProbability() {
-    let rockCount = 0;
-    let paperCount = 0;
-    let scissorsCount = 0;
+// function testProbability() {
+//     let rockCount = 0;
+//     let paperCount = 0;
+//     let scissorsCount = 0;
 
 
-    for (let i=0; i<1000;i++) {
+//     for (let i=0; i<1000;i++) {
 
-        let choice = getComputerChoice();
+//         let choice = getComputerChoice();
 
-        if (choice == "rock") {
-            rockCount++;
-        } else if (choice =="paper") {
-            paperCount++;
-        } else if (choice=="scissors") {
-            scissorsCount++;
-     };
-    }
-    return console.log(rockCount + " " + scissorsCount + " " + paperCount)
-}
+//         if (choice == "rock") {
+//             rockCount++;
+//         } else if (choice =="paper") {
+//             paperCount++;
+//         } else if (choice=="scissors") {
+//             scissorsCount++;
+//      };
+//     }
+//     return console.log(rockCount + " " + scissorsCount + " " + paperCount)
+// }
 
 playGame()
