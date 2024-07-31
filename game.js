@@ -47,9 +47,9 @@ function playGame() {
     }
 
     if (humanScore > computerScore) {
-            console.log("Human wins")
+            console.log("Human wins with a score of " + humanScore + " versus " + computerScore);
     } else {
-            console.log("Computer wins")
+            console.log("Computer wins with a score of " + computerScore + " versus " + humanScore);
     }
 }
 
