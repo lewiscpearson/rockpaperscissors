@@ -12,70 +12,50 @@ function getComputerChoice() {
     }
 }
 
-function getHumanChoice() {
-    let choice = prompt("Rock, Paper, or Scissors?");
-    console.log("Human choice received" + choice)
-    return choice;
-}
+//on button click, play game
+let playerChoiceBtn = document.querySelector("#choice");
 
-function playGame() {
-    console.log("play game initiated")
-    let humanScore = 0;
-    let computerScore = 0;
-
-
-    console.log("choices decided")
-
-    function playRound(humanChoice, computerChoice) {
-        console.log("play round called")
-        if ((humanChoice=="rock"&&computerChoice=="scissors")||(humanChoice=="paper"&&computerChoice=="rock")||(humanChoice=="scissors"&&computerChoice=="paper")){
-            humanScore++;
-            console.log(`Human wins with ${humanChoice} vs ${computerChoice}`);
-        } else if ((humanChoice=="rock"&&computerChoice=="paper")||(humanChoice=="scissors"&&computerChoice=="rock")||(humanChoice=="paper"&&computerChoice=="scissors")){
-            computerScore++;
-            console.log(`Computer wins with ${computerChoice} vs ${humanChoice}`);
-        } else if (humanChoice==computerChoice) {
-            console.log(`Draw with ${computerChoice} vs ${humanChoice}`);
-        } else {
-            console.log(humanChoice + " " + computerChoice + " " + "Invalid entry, enter rock, paper or scissors");
-        }
-        return humanScore, computerScore;
+playerChoiceBtn.addEventListener('click', (event) => {
+    let target = event.target;
+    
+    switch (target.id) {
+        case 'Rock':
+            playRound('rock');
+            break;
+        case 'Paper':
+            playRound('paper');
+            break;
+        case 'Scissors':
+            playRound('scissors');
+            break;
     }
+});
+let humanScore = 0;
+let computerScore = 0;
 
-    for (let i=0; i<4;i++) {
-        console.log(i)
-            let computerChoice = getComputerChoice();
-            let humanChoice = getHumanChoice();
-            playRound(humanChoice, computerChoice);
+function playRound(humanChoice) {
+    computerChoice = getComputerChoice();
 
-    }
+    let log = document.querySelector("#log");
 
-    if (humanScore > computerScore) {
-            console.log("Human wins")
+    console.log("play round called")
+
+
+    if ((humanChoice=="rock"&&computerChoice=="scissors")||(humanChoice=="paper"&&computerChoice=="rock")||(humanChoice=="scissors"&&computerChoice=="paper")){
+        humanScore++;
+        console.log(`Human wins with ${humanChoice} vs ${computerChoice}`);
+        log.textContent += `Human wins with ${humanChoice} vs ${computerChoice}`;
+    } else if ((humanChoice=="rock"&&computerChoice=="paper")||(humanChoice=="scissors"&&computerChoice=="rock")||(humanChoice=="paper"&&computerChoice=="scissors")){
+        computerScore++;
+        console.log(`Computer wins with ${computerChoice} vs ${humanChoice}`);
+        log.textContent += `Computer wins with ${computerChoice} vs ${humanChoice}`;
+    } else if (humanChoice==computerChoice) {
+        console.log(`Draw with ${computerChoice} vs ${humanChoice}`);
+        log.textContent += `Draw with ${computerChoice} vs ${humanChoice}`;
     } else {
-            console.log("Computer wins")
+        console.log(humanChoice + " " + computerChoice + " " + "Invalid entry, enter rock, paper or scissors");
+        log.textContent += humanChoice + " " + computerChoice + " " + "Invalid entry, enter rock, paper or scissors"
     }
+
+    return humanScore, computerScore;
 }
-
-function testProbability() {
-    let rockCount = 0;
-    let paperCount = 0;
-    let scissorsCount = 0;
-
-
-    for (let i=0; i<1000;i++) {
-
-        let choice = getComputerChoice();
-
-        if (choice == "rock") {
-            rockCount++;
-        } else if (choice =="paper") {
-            paperCount++;
-        } else if (choice=="scissors") {
-            scissorsCount++;
-     };
-    }
-    return console.log(rockCount + " " + scissorsCount + " " + paperCount)
-}
-
-playGame()
