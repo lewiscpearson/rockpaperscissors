@@ -39,23 +39,31 @@ function playRound(humanChoice) {
     let log = document.querySelector("#log");
 
     console.log("play round called")
+        if ((humanChoice=="rock"&&computerChoice=="scissors")||(humanChoice=="paper"&&computerChoice=="rock")||(humanChoice=="scissors"&&computerChoice=="paper")){
+            humanScore++;
+            console.log(`Human wins with ${humanChoice} vs ${computerChoice}`);
+            log.textContent = `Human wins with ${humanChoice} vs ${computerChoice}, score is Human ${humanScore}: Computer ${computerScore}`;
+        } else if ((humanChoice=="rock"&&computerChoice=="paper")||(humanChoice=="scissors"&&computerChoice=="rock")||(humanChoice=="paper"&&computerChoice=="scissors")){
+            computerScore++;
+            console.log(`Computer wins with ${computerChoice} vs ${humanChoice}`);
+            log.textContent = `Computer wins with ${computerChoice} vs ${humanChoice}, score is Human ${humanScore}: Computer ${computerScore}`;
+        } else if (humanChoice==computerChoice) {
+            console.log(`Draw with ${computerChoice} vs ${humanChoice}`);
+            log.textContent = `Draw with ${computerChoice} vs ${humanChoice}, score is Human ${humanScore}: Computer ${computerScore}`;
+        } else {
+            console.log(humanChoice + " " + computerChoice + " " + "Invalid entry, enter rock, paper or scissors");
+            log.textContent = humanChoice + " " + computerChoice + " " + "Invalid entry, enter rock, paper or scissors"
+        }
 
 
-    if ((humanChoice=="rock"&&computerChoice=="scissors")||(humanChoice=="paper"&&computerChoice=="rock")||(humanChoice=="scissors"&&computerChoice=="paper")){
-        humanScore++;
-        console.log(`Human wins with ${humanChoice} vs ${computerChoice}`);
-        log.textContent += `Human wins with ${humanChoice} vs ${computerChoice}`;
-    } else if ((humanChoice=="rock"&&computerChoice=="paper")||(humanChoice=="scissors"&&computerChoice=="rock")||(humanChoice=="paper"&&computerChoice=="scissors")){
-        computerScore++;
-        console.log(`Computer wins with ${computerChoice} vs ${humanChoice}`);
-        log.textContent += `Computer wins with ${computerChoice} vs ${humanChoice}`;
-    } else if (humanChoice==computerChoice) {
-        console.log(`Draw with ${computerChoice} vs ${humanChoice}`);
-        log.textContent += `Draw with ${computerChoice} vs ${humanChoice}`;
-    } else {
-        console.log(humanChoice + " " + computerChoice + " " + "Invalid entry, enter rock, paper or scissors");
-        log.textContent += humanChoice + " " + computerChoice + " " + "Invalid entry, enter rock, paper or scissors"
+    if (humanScore > computerScore && humanScore == 5){
+        log.textContent = `Human wins with a score of ${humanScore} to ${computerScore}. Game reset.`;
+        humanScore = 0;
+        computerScore = 0;
+    } else if (computerScore ==5){
+        log.textContent = `Computer wins with a score of ${computerScore} to ${humanScore}. Game reset.`;
+        humanScore = 0;
+        computerScore = 0;
     }
 
-    return humanScore, computerScore;
 }
